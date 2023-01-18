@@ -1,5 +1,7 @@
 module Fractal
 
-# Write your package code here.
+include("Julia_fonctions.jl")
+
+export FractaleMR
 
 end
