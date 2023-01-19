@@ -1,7 +1,3 @@
-using Colors
-using Images
-using Dates
-
 ######################### FONCTIONS GENERATRICES DE FRACTALES #########################
 
 ######################### par ITERATIONS INVERSES, c.f. la partie théorique du rapport
