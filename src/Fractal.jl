@@ -2,6 +2,6 @@ module Fractal
 
 include("Julia_fonctions.jl")
 
-export FractaleMR
+export JFractalMR
 
 end
