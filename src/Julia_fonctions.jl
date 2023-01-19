@@ -504,7 +504,7 @@ le répertoire de travail ou dans C:\Users\*vous* sur windows si aucun répertoi
 
 function FractaleMR(c ; algo = "ET", dl = false, PATH = "",
     N = 648, B = 5, #Julia3
-    len = 10000, I = 25, #Julia4Rv2
+    len = 4000, I = 25, #Julia4Rv2
     xa=(-2,2), ya=(-2,2), xc=1, yc=1, fl=10, fL=10, r=2, #VecToMat
     bg = HSV(0,0,0), fg = HSV(0,0,1), rainbow = false, h=0, s=1, v=1, a=360, #MatToImage
     tips = true) 
@@ -512,18 +512,18 @@ function FractaleMR(c ; algo = "ET", dl = false, PATH = "",
     if tips
         print("\n", 
         
-        "CONSEILS POUR L'ALGORITHME ESCAPE TIME:", "\n", "\n",
+        "CONSEILS POUR L'ALGORITHME ESCAPE TIME (utilisé par défaut):", "\n", "\n",
 
-        "- Si vous choisissez algo = 'ET' et que la fractale n'apparait", "\n",
-        "  pas, tenter de baisser I < 50 (ou augmenter len > 10000).", "\n","\n",
+        "- Si la fractale n'apparait pas, tenter de baisser I < 50", "\n",
+        "  (augmenter len > 8000 peut aider).", "\n","\n",
 
-        "- Si vous voyez des zones plaines, essayez d'augmenter I > 50 (ou len).", "\n", "\n",
+        "- Si vous voyez des zones plaines, essayez d'augmenter I > 50.", "\n", "\n",
 
         "- Si des lignes de la couleur du fond aparaissent dans les zones", "\n",
         "  plaines, c'est que, pour une même surface, la finesse du", "\n",
         "  quadrillage pour le calcul des points -paramètre len- est", "\n",
-        "  inférieure à la définition de l'image -paramètre r-, augmentez le", "\n",
-        "  premier ou baisser le second.", "\n", "\n",
+        "  inférieure à la définition de l'image -paramètre r-, augmentez", "\n",
+        "  le premier ou baisser le second.", "\n", "\n",
         
         "- Utiliser -rainbow = true- !", "\n", "\n")
     end
