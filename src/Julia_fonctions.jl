@@ -1,4 +1,3 @@
-import Pkg; Pkg.add("Colors")
 using Colors
 using Images
 using Dates
