@@ -487,6 +487,9 @@ end
 ######################### FONCTION FINALE
 
 #=
+L'idée est de combiner toutes les fonctions ci-dessus en une seule pour ne pas avoir 
+à les imbriquer comme ce qui a été fait pour les TESTS précédents. On utilisera
+Julia3 et Julia4Rv2 pour calculer les points (au choix). 
 Paramètres :
 - c : complexe, paramètre de la fractale voulue,
 - algo : "IV" ou "ET", l'algorithme voulu, resp Julia3 (Itérations Inverses) ou 
@@ -499,12 +502,14 @@ le répertoire de travail ou dans C:\Users\*vous* sur windows si aucun répertoi
 - tips : booléen -> voulez-vous des conseils sur l'algorithme "ET" ?
 =#
 
-function JFractalMR(c ; algo = "ET", dl = false, PATH = "",
+function JFractalMR(c ; 
+    algo = "ET", # Algorithme 
+    dl = false, PATH = "", # Sauvegarde de l'image
     N = 648, B = 5, #Julia3
     len = 4000, I = 25, #Julia4Rv2
     xa=(-2,2), ya=(-2,2), xc=1, yc=1, fl=10, fL=10, r=2, #VecToMat
     bg = HSV(0,0,0), fg = HSV(0,0,1), rainbow = false, h=0, s=1, v=1, a=360, #MatToImage
-    tips = true) 
+    tips = true) # Conseils
 
     if tips
         print("\n", 
@@ -562,6 +567,7 @@ end
 
 #JFractalMR(0.19+0.6im, I = 100)
 #JFractalMR(0.19+0.6im, I = 100, yc = 2)
+#JFractalMR(0.19+0.6im, I = 100, xc = 4)
 #JFractalMR(0.19+0.6im, I = 100, xc = 0.1)
 #JFractalMR(0.19+0.6im, I = 100, xa = (-1,1), ya=(-1,1))
 #JFractalMR(0.19+0.6im, I = 100, fl = 16, fL=9)
@@ -574,3 +580,32 @@ end
 
 # sauvegarde
 #JFractalMR(0.19+0.6im, I = 100, dl=true, PATH = "C:\\Cours\\UGA22-23\\LR_projet S1\\Images\\")
+
+######################### AMELIORATION(S) POSSIBLE(S)
+
+#= 1. ROGNAGE DE L'IMAGE, modification de Julia4Rv2 -> Julia4Rv2_1 :
+Cette modification concerne le "rognage" de l'image, en effet Julia4Rv2 quadrille un 
+rectangle Rx*Ry contenant la fractale (assez proche de cette dernière par pré-calculs à l'aide 
+de Julia1) en len*len complexes lesquels vont subir le test de divergence des I itérations.
+Sauf qu'ensuite VecToMat offre la possibilté de rogner l'image en ne conservant que le 
+rectangle xa*ya. Si xa*ya est strictement inclus dans Rx*Ry, l'image générée ne correspondra
+pas à un quadrillage de xa*ya en len*len mais un à un quadrillage moins fin. En effet 
+l'image à l'écran correspondra à un quadrillage d'environ :
+(AIRE_xa*ya / AIRE_Rx*Ry)*len*len (< len*len) points de la région du plan imagée.
+L'idée est de fournir à Julia4Rv2 les paramètres de rognage xa et ya pour que le quadrillage
+en len*len du plan s'applique à xa*ya directement lorsque que c'est pertinent. L'approximation 
+de la fractale dans la région xa*ya sera plus précise.
+Difficultée : 
+Julia4Rv2 utilise la symétrie centrale de la fractale pour diviser par 2 le nombre de calculs.
+On ne plus utiliser cette astuce si on se restreint au rectangle xa*ya et qu'il n'est pas 
+centré en 0. 
+Idée :
+Se restreindre au rectangle xa*ya uniquement lorsque son aire est inférieur à la moitié de 
+celle de Rx*Ry et le découper en len*sqrt(0.5)*len*sqrt(0.5) points. Ainsi on conserve le 
+même nombre de points testés (len*len*0.5) que si l'astuce de la symétrie centrale avait été
+utilisée, et la finesse du quadrillage de l'image générée sera de len*len*0.5 points, ce qui 
+est mieux que (AIRE_xa*ya / AIRE_Rx*Ry)*len*len, voir beaucoup mieux si l'aire de xa*ya est 
+beaucoup plus petite que (la moitié de) celle de Rx*Ry. C'est un compromis qui permet de 
+conserver la vitesse de l'aglorithme tout en minorant la perte de qualité de l'approximation 
+lorsqu'on rogne l'image.
+=#
