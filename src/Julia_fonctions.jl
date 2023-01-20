@@ -63,7 +63,7 @@ end
 
 #=
 2-ième G : Après quelques générations d'images, descendre l'arbre des inverses uniquement 
-en profondeur (1-er G) pose un souci, certaines "zones" de la fractales semblent ne pas 
+en profondeur (1-er G) pose un souci, certaines "zones" de la fractale semblent ne pas 
 apparaître, il faut aussi parcourir l'arbre en largeur ! La fonction suivante calcule TOUTES 
 les pré-images jusqu'à une profondeur P. Attention on calcul donc 2^P+1 - 1 points. 
 
@@ -137,7 +137,7 @@ end
 #=
 Remarque(s): C'est rapide, pas compliqué à implémenter, mais pas fameux quant aux détails qu'on
 arrive à "capter" de la fractale. Même en poussant le nombre de points calculés (en profondeur
-et en largeur), les points "centraux" de la fractale semblent inaccessible en un temps raisonnable.
+et en largeur), les points "centraux" de la fractale semblent inaccessibles en un temps raisonnable.
 L'algorithme suivant donne de biens meilleurs résultats. Spoiler : 
 =#
 
@@ -225,7 +225,7 @@ fractale en appelant Julia1 au préalable. On a un coup en ressource "fixe" plus
 mais on est gagnant sur un quadrillage plus fin du plan.
 
 Par défaut Julia4R quadrille [-2,2]x[0,2] en 10000x5000 = 50 000 000 de points, tandis que par 
-défaut Julia4Rv2 quadrille un rectangle strictement inclu dans [-2,2]x[0,2] en 10000x5000 de 
+défaut Julia4Rv2 quadrille un rectangle strictement inclu dans [-2,2]x[0,2] en 10000x5000
 points. Julia4Rv2 est donc par défaut "plus fine" que Julia4R. L'intêrét de Julia4Rv2 se 
 révèle lorsque par exemple je divise le pas dans Julia4R par 10 (=0.00004), l'algorithme 
 n'aboutit pas à cause d'un problème de mémoire (du à ma configuration) alors qu'augmenter la 
@@ -311,7 +311,7 @@ PROBLEME de Julia4R et Julia4Rv2 : si la fractale "recouvre" peu d'espace (***),
 s'échappent très vite autour des points "peu nombreux" de la fractale et il est difficile d'en 
 faire une représentation approchée par cet algorithme sans "faciliter" le test de divergence 
 i.e abaisser I ou beaucoup augmenter la finesse du quadrillage (ce qui moralement conduit à 
-tester "plus de points plus proches de la fractales" qui divergent plus lentement). 
+tester "plus de points plus proches de la fractale" qui divergent plus lentement). 
 Par exemple pour (***), I=50 conduit à la génération d'une image noire. 
 =#
 
@@ -328,7 +328,7 @@ REMARQUE:
 Nous voulons à partir des vecteurs X et Y générés par les fonctions Julia1, 2, 3 et 4
 générer une image. Il s'agit de tracer dans le plan les points de coordonnées (X,Y). 
 Toutefois pour que les fractales soient riches en détails nous calculons un grand nombre 
-de pré-images/ points (beaucoup plus que le nombre de pixel / la définition des écrans 
+de pré-images/ points (beaucoup plus que le nombre de pixels / la définition des écrans 
 standards), beaucoup de ces pré-images/ points vont correspondre au même pixel à l'écran 
 (princippe des tiroirs). Après quelques tentatives infructueuses (chronophages) il semble 
 donc judicieux de ne pas tracer tous les points (X,Y) tel que le ferait la fonction plot 
@@ -370,11 +370,11 @@ function VecToMat(V ; xa=(-2,2), ya=(-2,2), xc=1, yc=1, fl=10, fL=10, r=2)
     # Définition de la matrice de pixels qui représente xa*ya :
     rapport_xa_ya = (xa[2]-xa[1])/(ya[2]-ya[1]) #= Pour que la matrice représente bien 
     le rectangle xa*ya sans déformation. =# 
-    l = Int(round(100*fl*r*rapport_xa_ya)) # Largeur / nombre de pixels verticaux.
-    L = Int(round(100*fL*r)) # Longueur / ... horizontaux.
+    l = Int(round(100*fl*r*rapport_xa_ya)) # Longueur / ... horizontaux.
+    L = Int(round(100*fL*r)) # Largeur / nombre de pixels verticaux. 
     M = zeros(L,l)*1.0
 
-    #= Parcours simultané des vecteurs X et Y. On convertit les points (x,y) en coordonnées 
+    #= Parcours simultanés des vecteurs X et Y. On convertit les points (x,y) en coordonnées 
     entières à l'échelle de la matrice. Comme on fait des arrondis, pour éviter les pixels (0,.)
     ou (.,0) qui n'existent pas dans la matrice (indices qui commencent à 1) on utilise max. =#
     for i in 1:b
@@ -399,7 +399,7 @@ end
 ######################### GENERATION / COLORISATION
 
 #=
-L'idée est simple, on prend une matrice de pixels 0/1 réels, on la transforme en quelque chose que 
+L'idée est simple, on prend une matrice réelle de pixels 0/1, on la transforme en quelque chose que 
 connait le package Images suivant la colorisation choisie puis on renvoie l'image. 
 
 Paramètre(s):
@@ -441,7 +441,7 @@ function MatToImage(M ; bg = HSV(0,0,0), fg = HSV(0,0,1), rainbow = false, h=0, 
     else # ARC-EN-CIEL
 
         #= On cherche le nombre de colonnes de M possèdant un pixel 1 (pour créer la palette
-        de couleurs irisée. =#
+        de couleurs irisées. =#
         l = 0
         for c in axes(M,2)
             if 1 in M[:,c]
