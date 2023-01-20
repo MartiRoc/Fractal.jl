@@ -53,4 +53,4 @@ Comme pour la 1-ère méthode, les deux premières instructions servent à ajout
 
 ### Remarque
 
-Une fois que le package a été ajouté à l'environnement de travail, seul l'instruction `using Fractal` est nécéssaire pour commencer à l'utiliser dans cet environnement. 
+Une fois que le package a été ajouté à l'environnement de travail, seule l'instruction `using Fractal` est nécessaire pour commencer à l'utiliser dans cet environnement. 
