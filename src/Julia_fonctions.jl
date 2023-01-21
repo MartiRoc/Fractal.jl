@@ -135,11 +135,11 @@ end
 #M = Gray.(VecToMat(Julia3(648,-0.66+0.4im)))
 
 #=
-Remarque(s): C'est rapide, pas compliqué à implémenter, mais pas fameux quant aux détails qu'on
-arrive à "capter" de la fractale. Même en poussant le nombre de points calculés (en profondeur
-et en largeur), les points "centraux" de la fractale semblent inaccessibles en un temps raisonnable.
-L'algorithme suivant donne de biens meilleurs résultats. Spoiler : 
-=#
+Remarque: L'algorithme d'itérations inverses est très efficace (rapport rapidité / résultat)
+pour obtenir rapidement une idée de la forme d'une fractale associé à un paramètre c.
+Cependant nous allons voir qu'un autre algorithme, qui lui approxime les ensembles de Julia
+remplis permet de générer des images encore plus spectaculaires (à mon sens). Il s'agit de 
+l'algorithme "Escape Time" ou "Temps de fuite" en francais. Spoiler : =#
 
 #M = Gray.(VecToMat(Julia4Rv2(-0.66+0.4im)))
 
