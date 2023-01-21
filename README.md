@@ -7,7 +7,7 @@
 
 ## Description / Documentation:  
 
-Ce package a pour fonction principale **JFractalMR()** qui permet à partir d'un complexe c donné en paramètre de générer une approximation de l'ensemble de julia de paramètre c. De nombreux paramètres graphiques sont disponibles pour rogner / déformer / changer les couleurs de l'image générée. Ce package a été créé sous la version 1.8 de Julia. Un présentation détaillée et interactive de cette fonction est disponible sous la forme d'un _Pluto notebook_ disponible à l'adresse suivante : 
+Ce package a pour fonction principale **JFractalMR()** qui permet à partir d'un complexe c donné en paramètre de générer une approximation de l'ensemble de julia de paramètre c (au choix rempli ou non). De nombreux paramètres graphiques sont disponibles pour rogner / déformer / changer les couleurs de l'image générée. Ce package a été créé sous la version 1.8 de Julia. Un présentation détaillée et interactive de cette fonction est disponible sous la forme d'un _Pluto notebook_ disponible à l'adresse suivante : 
 
 https://github.com/MartiRoc/Ensembles_de_Julia/tree/main/JFractalMR_notebook
 
@@ -53,4 +53,4 @@ Comme pour la 1-ère méthode, les deux premières instructions servent à ajout
 
 ### Remarque
 
-Une fois que le package a été ajouté à l'environnement de travail, seul l'instruction `using Fractal` est nécéssaire pour commencer à l'utiliser dans cet environnement. 
+Une fois que le package a été ajouté à l'environnement de travail, seule l'instruction `using Fractal` est nécessaire pour commencer à l'utiliser dans cet environnement. 
